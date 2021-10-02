@@ -9,6 +9,7 @@ public class EmployeePayrollData {
 		this.EmployeeName = EmployeeName;
 		this.EmployeeSalary = EmployeeSalary;
 	}
+	@Override
 	public String toString() {
 		return "Employee id: "+employeeId+", EmployeeName: "+EmployeeName+", EmployeeSalary: "+EmployeeSalary;
 	}

@@ -28,15 +28,31 @@ public class EmployeePayrollService {
 		employeePayrollList.add(new EmployeePayrollData(id,name,salary));
 
 	}
-	private void writeEmployeePayrollData() {
-		System.out.println("\n Writing Payroll Roaster to Cosole\n"+employeePayrollList);
+	public void writeEmployeePayrollData() {
+		System.out.println("\nWritting Employee Payroll Roaster to Console\n"+employeePayrollList);
+	}
+	void writeEmployeePayrollData(IOService ioService){
+		if(ioService.equals(IOService.CONSOLE_IO)) {
+			System.out.println("\nWritting Employee Payroll Roaster to Console"+employeePayrollList);
+			}
+		else if(ioService.equals(IOService.FILE_IO)) {
+			new EmployeePayrollFileIOService().writeData(employeePayrollList);
+		}
+		
 	}
 	public static void main(String[] args) {
 		System.out.println("-----------Welcome to Employee Payroll Services-------------");
 		ArrayList<EmployeePayrollData>employeePayrollList = new ArrayList<EmployeePayrollData>();
 		EmployeePayrollService employeePayrollService = new EmployeePayrollService(employeePayrollList);
 		Scanner scannerObject = new Scanner(System.in);
+		
 		employeePayrollService.readEmployeePayrollData(scannerObject);
 		employeePayrollService.writeEmployeePayrollData();
+		employeePayrollService.writeEmployeePayrollData(IOService.CONSOLE_IO);
+	}
+	public void printData(IOService ioService) {
+		if(ioService.equals(IOService.FILE_IO)) {
+			new EmployeePayrollFileIOService().printData();
+		}
 	}
 }

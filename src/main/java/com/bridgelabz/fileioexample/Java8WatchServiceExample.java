@@ -18,7 +18,7 @@ public class Java8WatchServiceExample {
 	private final WatchService watcher;
 	private final Map<WatchKey,Path> dirWatchers;
 
-	//Create a WatchService and registera the given directory
+	//Create a WatchService and register the given directory
 
 	Java8WatchServiceExample(Path dir) throws IOException{
 		this.watcher = FileSystems.getDefault().newWatchService();
