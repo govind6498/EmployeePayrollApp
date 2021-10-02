@@ -14,6 +14,12 @@ public class NIOFileAPITest {
 	private static String PLAY_WITH_NIO = "TempPlayGround";
 
 	@Test
+	public void gibenADirectoryWhenWatchedListsAllTheActivities() throws IOException {
+		Path dir = Paths.get(HOME+"/"+PLAY_WITH_NIO);
+		Files.list(dir).filter(Files::isRegularFile).forEach(System.out::println);
+		new Java8WatchServiceExample(dir).processEvents();
+	}
+	@Test
 	public void givenPathWhenCheckedThemConfirm() throws IOException {
 		//Check file exists
 		Path homePath = Paths.get(HOME);
