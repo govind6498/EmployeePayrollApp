@@ -4,9 +4,10 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 
-import com.bridgelabz.fileioexample.EmployeePayrollService.IOService;
+//import com.bridgelabz.fileioexample.EmployeePayrollService.IOService;
 
 //import com.google.common.io.Files;
 
@@ -33,19 +34,35 @@ public class EmployeePayrollFileIOService {
 		}
 		catch(IOException e) {
 			e.printStackTrace();
-			}
+		}
 
 	}
 	public long countEntries() {
 		long entries = 0;
 		try {
 			entries = Files.lines(new File(PAYROLL_FILE_NAME).toPath()).count();
-			
+
 		}
 		catch(IOException e) {
 			e.printStackTrace();
 		}
 		return entries;
 	}
+	public List<String> readDataFromFile(){
+		List<String> employeePayrollList = new ArrayList<String>();
+		try {
+			Files.lines(new File(PAYROLL_FILE_NAME).toPath())
+			.map(employee->employee.trim())
+			.forEach(employee->{
+				System.out.println(employee);
+				employeePayrollList.add(employee);
+			});
+		}
+		catch(IOException e) {
+			e.printStackTrace();
+		}
+		return employeePayrollList;
 
+	}
+	
 }
