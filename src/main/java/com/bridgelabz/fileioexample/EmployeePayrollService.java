@@ -1,5 +1,7 @@
 package com.bridgelabz.fileioexample;
 
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -55,4 +57,10 @@ public class EmployeePayrollService {
 			new EmployeePayrollFileIOService().printData();
 		}
 	}
+	public long countEntries(IOService fileIo) {
+		if(fileIo.equals(IOService.FILE_IO)) return new EmployeePayrollFileIOService().countEntries();
+
+		return 0;
+	}
+	
 }

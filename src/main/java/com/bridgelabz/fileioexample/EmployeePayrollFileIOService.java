@@ -1,9 +1,12 @@
 package com.bridgelabz.fileioexample;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
+
+import com.bridgelabz.fileioexample.EmployeePayrollService.IOService;
 
 //import com.google.common.io.Files;
 
@@ -25,8 +28,24 @@ public class EmployeePayrollFileIOService {
 	}
 
 	public void printData() {
-		// TODO Auto-generated method stub
+		try {
+			Files.lines(new File(PAYROLL_FILE_NAME).toPath()).forEach(System.out::println);
+		}
+		catch(IOException e) {
+			e.printStackTrace();
+			}
 
+	}
+	public long countEntries() {
+		long entries = 0;
+		try {
+			entries = Files.lines(new File(PAYROLL_FILE_NAME).toPath()).count();
+			
+		}
+		catch(IOException e) {
+			e.printStackTrace();
+		}
+		return entries;
 	}
 
 }
